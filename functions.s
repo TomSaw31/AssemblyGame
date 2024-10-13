@@ -3,13 +3,12 @@
 
 length:
     xor %rax, %rax
-next_char:
-    cmpb $0, (%rsi)
-    je end_length
+.loop:
+    cmpb $0, (%rdi, %rax)
+    je .done
     inc %rax
-    inc %rsi
-    jmp next_char
-end_length:
+    jmp .loop
+.done:
     ret
 
 exit:

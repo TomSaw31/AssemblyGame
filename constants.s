@@ -7,3 +7,7 @@ hello_world:
 .global new_line
 new_line:
     .asciz "\n"
+
+.global MENU_SIZE
+MENU_SIZE:
+    .int 50
