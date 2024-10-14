@@ -6,6 +6,5 @@
 # rax, rdi, rsi, rdx, rcx
 
 _start:
-    main_menu
+    call main_menu
     call exit
-

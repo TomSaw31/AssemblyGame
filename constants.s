@@ -8,6 +8,10 @@ hello_world:
 new_line:
     .asciz "\n"
 
+.global equal_string
+equal_string:
+    .asciz "="
+
 .global MENU_SIZE
 MENU_SIZE:
     .int 50
