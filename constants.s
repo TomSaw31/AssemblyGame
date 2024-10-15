@@ -1,16 +1,32 @@
 .section .data
 
-.global hello_world
-hello_world:
+.global HELLO_WORLD
+HELLO_WORLD:
     .asciz "Hello World!"
 
-.global new_line
-new_line:
+.global NEW_LINE
+NEW_LINE:
     .asciz "\n"
 
-.global equal_string
-equal_string:
+.global EQUAL
+EQUAL:
     .asciz "="
+
+.global UPPER_LEFT_CORNER
+UPPER_LEFT_CORNER:
+    .asciz "╔"
+
+.global UPPER_RIGHT_CORNER
+UPPER_RIGHT_CORNER:
+    .asciz "╗"
+
+.global SEPARATION
+SEPARATION:
+    .asciz "║"
+
+.global SPACE
+SPACE:
+    .asciz " "
 
 .global MENU_SIZE
 MENU_SIZE:

@@ -10,34 +10,47 @@ print_raw:
     ret
 
 print:
-    mov %rdi, %rsi
-    call length
-    mov %rax, %rdx
-    mov $1, %rax
-    mov $1, %rdi
-    syscall
+    call print_raw
     call print_empty_lines
     ret
 
 print_empty_lines:
-    lea new_line, %rdi
+    lea NEW_LINE, %rdi
     call print_raw
     ret
 
 show_menu_name:
-    xor %cx, %cx
-    lea equal_string, %rdi
-.loop:
-    cmp $50, %cx
-    je .loop
+    lea UPPER_LEFT_CORNER, %rdi
     call print_raw
-    inc %cx
-    jmp .done
-.done:
+    mov MENU_SIZE, %r8
+.loop:
+    lea EQUAL, %rdi
+    call print_raw
+    dec %r8
+    jnz .loop
+    lea UPPER_RIGHT_CORNER, %rdi
+    call print
+    ret
+
+show_centered_menu_line:
+    lea SEPARATION, %rdi
+    call print
+    call length
+    mov MENU_SIZE, %r8
+    add %rax, %r8
+    sar $1, %r8
+.l:
+    lea EQUAL, %rdi
+    call print_raw
+    dec %r8
+    jnz .l
+    lea UPPER_RIGHT_CORNER, %rdi
+    call print
     ret
 
 main_menu:
-    lea hello_world, %rdi
+    lea HELLO_WORLD, %rdi
     call print
     call show_menu_name
+    call print_empty_lines
     ret
