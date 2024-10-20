@@ -20,6 +20,14 @@ UPPER_LEFT_CORNER:
 UPPER_RIGHT_CORNER:
     .asciz "╗"
 
+.global LOWER_RIGHT_CORNER
+LOWER_RIGHT_CORNER:
+    .asciz "╝"
+
+.global LOWER_LEFT_CORNER
+LOWER_LEFT_CORNER:
+    .asciz "╚"
+
 .global SEPARATION
 SEPARATION:
     .asciz "║"

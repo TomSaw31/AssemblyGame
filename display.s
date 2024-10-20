@@ -23,16 +23,27 @@ show_menu_name:
     lea UPPER_LEFT_CORNER, %rdi
     call print_raw
     mov MENU_SIZE, %r8d
-.loop:
+.loop1_show_menu_name:
     lea EQUAL, %rdi
     call print_raw
     dec %r8d
-    jnz .loop
+    jnz .loop1_show_menu_name
     lea UPPER_RIGHT_CORNER, %rdi
     call print
 
     lea MAIN_MENU_NAME, %rdi
     call show_centered_menu_line
+
+    lea LOWER_LEFT_CORNER, %rdi
+    call print_raw
+    mov MENU_SIZE, %r8d
+.loop2_show_menu_name:
+    lea EQUAL, %rdi
+    call print_raw
+    dec %r8d
+    jnz .loop2_show_menu_name
+    lea LOWER_RIGHT_CORNER, %rdi
+    call print
     ret
 
 show_centered_menu_line:
@@ -52,20 +63,20 @@ show_centered_menu_line:
     movl %r8d, %r9d
 
     # Print spaces
-.loop1:
+.loop1_show_centered_menu_line:
     lea SPACE, %rdi
     call print_raw
     dec %r9d
-    jnz .loop1
+    jnz .loop1_show_centered_menu_line
 
     lea MAIN_MENU_NAME, %rdi
     call print_raw
 
-.loop2:
+.loop2_show_centered_menu_line:
     lea SPACE, %rdi
     call print_raw
     dec %r8d
-    jnz .loop2
+    jnz .loop2_show_centered_menu_line
 
     # Print a separation on the right
     lea SEPARATION, %rdi
