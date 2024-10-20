@@ -31,3 +31,7 @@ SPACE:
 .global MENU_SIZE
 MENU_SIZE:
     .int 50
+
+.global MAIN_MENU_NAME
+MAIN_MENU_NAME:
+    .asciz "TIC-TAC-TOE"

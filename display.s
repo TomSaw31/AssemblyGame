@@ -22,35 +22,57 @@ print_empty_lines:
 show_menu_name:
     lea UPPER_LEFT_CORNER, %rdi
     call print_raw
-    mov MENU_SIZE, %r8
+    mov MENU_SIZE, %r8d
 .loop:
     lea EQUAL, %rdi
     call print_raw
-    dec %r8
+    dec %r8d
     jnz .loop
     lea UPPER_RIGHT_CORNER, %rdi
     call print
+
+    lea MAIN_MENU_NAME, %rdi
+    call show_centered_menu_line
     ret
 
 show_centered_menu_line:
+    # Get length of the string
+    mov %rdi, %rsi
+    call length  
+    
+
+    # Print a separation on the left
     lea SEPARATION, %rdi
-    call print
-    call length
-    mov MENU_SIZE, %r8
-    add %rax, %r8
-    sar $1, %r8
-.l:
-    lea EQUAL, %rdi
     call print_raw
-    dec %r8
-    jnz .l
-    lea UPPER_RIGHT_CORNER, %rdi
+
+    # Calculate the size of the space on the side of the string
+    movl MENU_SIZE, %r8d
+    subl %eax, %r8d
+    shrl $1, %r8d
+    movl %r8d, %r9d
+
+    # Print spaces
+.loop1:
+    lea SPACE, %rdi
+    call print_raw
+    dec %r9d
+    jnz .loop1
+
+    lea MAIN_MENU_NAME, %rdi
+    call print_raw
+
+.loop2:
+    lea SPACE, %rdi
+    call print_raw
+    dec %r8d
+    jnz .loop2
+
+    # Print a separation on the right
+    lea SEPARATION, %rdi
     call print
     ret
 
 main_menu:
-    lea HELLO_WORLD, %rdi
-    call print
     call show_menu_name
     call print_empty_lines
     ret
